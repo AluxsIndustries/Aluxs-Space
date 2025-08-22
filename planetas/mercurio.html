@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mercurio - Aluxs Space</title>
+  <style>
+        /* ========== BASE ========== */
+    body{
+      margin:0; background:#000; color:#fff; font-family: Arial, sans-serif; overflow-x:hidden;
+    }
+    /* Fondo estrellas (canvas fijo) */
+    canvas#stars{
+      position:fixed; inset:0; width:100%; height:100%; z-index:-1;
+    }
+        /* ========== HEADER ========== */
+    header{ text-align:center; padding:100px 20px 30px; }
+    header h1{
+      font-size:4rem; font-weight:800; color:#fff;
+      text-shadow:0 0 20px rgb(255, 254, 254), 0 0 40px rgb(247, 70, 47);
+      animation:glow 2s ease-in-out infinite alternate;
+    }
+    @keyframes glow{
+      from{ text-shadow:0 0 20px rgb(206, 203, 202), 0 0 40px rgb(255, 255, 255); }
+      to  { text-shadow:0 0 40px #fffefe, 0 0 80px rgb(255, 255, 255); }
+    }
+
+    /* Planeta Marte */
+    .planet {
+      width: 250px;
+      height: 250px;
+      margin: 40px auto;
+      border-radius: 50%;
+      background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Mercury_in_color_-_Prockter07_centered.jpg/800px-Mercury_in_color_-_Prockter07_centered.jpg") no-repeat;
+      background-size: cover;
+      animation: rotate 20s linear infinite;
+      box-shadow: 0 0 40px rgb(255, 255, 255);
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    section {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    section h2 {
+      color: #ff8080;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    section p {
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    .images {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .images img {
+      width: 280px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+      transition: transform 0.3s;
+    }
+
+    .images img:hover {
+      transform: scale(1.05);
+    }
+
+    .btn-back {
+      display: block;
+      margin: 40px auto;
+      padding: 12px 25px;
+      background: #ff4d4d;
+      color: white;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 0 15px #ff4d4d;
+      transition: 0.3s;
+    }
+
+    .btn-back:hover {
+      background: #ff1a1a;
+      box-shadow: 0 0 25px #ff1a1a;
+    }
+  </style>
+</head>
+<body>
+    <!-- FONDO ESTRELLADO -->
+  <canvas id="stars"></canvas>
+
+  <header>
+    <h1>🌑 Mercurio - El Planeta de fuego y hielo</h1>
+  </header>
+
+  <div class="planet"></div>
+
+  <section>
+    <h2>Información General</h2>
+    <p>
+      Mercurio es el planeta más cercano al Sol y el más pequeño del sistema solar. 
+      Completa una vuelta alrededor del Sol en solo 88 días terrestres, lo que lo convierte en el planeta con la órbita más rápida.
+    <ul>
+      <li>💥 Posición en el sistema solar: 1er planeta desde el Sol</li>
+      <li>💥 Distancia al Sol: ~57,9 millones de km.</li>
+      <li>💥 Diámetro: 4,879 km (el planeta más pequeño del sistema solar).</li>
+      <li>💥 Masa: 0,055 veces la de la Tierra.</li>
+      <li>💥 Gravedad: 3,7 m/s² (un poco más de un tercio de la gravedad terrestre).</li>
+      <li>💥Satélites: Ninguno.</li>
+    </ul>
+    </p>
+  </section>
+
+  <section>
+    <h2>🌡️ Clima y superficie</h2>
+    <p>
+      🚀 <b>Aunque es un mundo rocoso, no tiene atmósfera densa que lo proteja, por eso sus temperaturas varían de forma extrema: 
+        de 430 °C durante el día hasta -180 °C en la noche.</b>
+        <ul>
+      <li> Atmósfera: muy delgada, compuesta de oxígeno, sodio, hidrógeno, helio y potasio (casi inexistente).</li>
+      <li> Superficie: rocosa y llena de cráteres, parecida a la Luna.</li>
+      <li> Temperaturas extremas: de -180 °C en la noche hasta 430 °C en el día.</li>
+    </ul>
+    </p>
+  </section>
+
+  <section>
+    <h2>Galería de Mercurio</h2>
+    <div class="images">
+      <img src="../mercurioimg/1.webp" alt="Marte 1">
+      <img src="../mercurioimg/2.jpg" alt="Marte 2">
+      <img src="../mercurioimg/3.jpg" alt="Marte 3">
+    </div>
+  </section>
+
+  <a href="../index.html" class="btn-back">⬅ Volver a Aluxs Space</a>
+  <script>
+      /* ===== Fondo estrellado (canvas) ===== */
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+
+    function resize(){
+      canvas.width = innerWidth;
+      canvas.height = innerHeight;
+      // recrear estrellas al redimensionar
+      stars = Array.from({length: 220}, () => ({
+        x: Math.random()*canvas.width,
+        y: Math.random()*canvas.height,
+        r: Math.random()*1.8 + 0.2,
+        s: Math.random()*0.6 + 0.2   // velocidad
+      }));
+    }
+    addEventListener('resize', resize);
+    resize();
+
+    function draw(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      ctx.fillStyle = '#fff';
+      for(const st of stars){
+        ctx.beginPath();
+        ctx.arc(st.x, st.y, st.r, 0, Math.PI*2);
+        ctx.fill();
+        // movimiento vertical suave (parallax simple)
+        st.y += st.s;
+        if(st.y > canvas.height){ st.y = -2; st.x = Math.random()*canvas.width; }
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tierra - Aluxs Space</title>
+  <style>
+        /* ========== BASE ========== */
+    body{
+      margin:0; background:#000; color:#fff; font-family: Arial, sans-serif; overflow-x:hidden;
+    }
+    /* Fondo estrellas (canvas fijo) */
+    canvas#stars{
+      position:fixed; inset:0; width:100%; height:100%; z-index:-1;
+    }
+        /* ========== HEADER ========== */
+    header{ text-align:center; padding:100px 20px 30px; }
+    header h1{
+      font-size:4rem; font-weight:800; color:#fff;
+      text-shadow:0 0 20px rgb(255, 254, 254), 0 0 40px rgb(247, 70, 47);
+      animation:glow 2s ease-in-out infinite alternate;
+    }
+    @keyframes glow{
+      from{ text-shadow:0 0 20px rgb(78, 226, 9), 0 0 40px rgb(53, 146, 9); }
+      to  { text-shadow:0 0 40px #009900, 0 0 80px rgb(47, 192, 3); }
+    }
+
+    /* Planeta Marte */
+    .planet {
+      width: 250px;
+      height: 250px;
+      margin: 40px auto;
+      border-radius: 50%;
+      background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/The_Earth_seen_from_Apollo_17.jpg/800px-The_Earth_seen_from_Apollo_17.jpg") no-repeat;
+      background-size: cover;
+      animation: rotate 20s linear infinite;
+      box-shadow: 0 0 40px rgb(3, 150, 40);
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    section {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    section h2 {
+      color: #ff8080;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    section p {
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    .images {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .images img {
+      width: 280px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+      transition: transform 0.3s;
+    }
+
+    .images img:hover {
+      transform: scale(1.05);
+    }
+
+    .btn-back {
+      display: block;
+      margin: 40px auto;
+      padding: 12px 25px;
+      background: #ff4d4d;
+      color: white;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 0 15px #ff4d4d;
+      transition: 0.3s;
+    }
+
+    .btn-back:hover {
+      background: #ff1a1a;
+      box-shadow: 0 0 25px #ff1a1a;
+    }
+  </style>
+</head>
+<body>
+    <!-- FONDO ESTRELLADO -->
+  <canvas id="stars"></canvas>
+
+  <header>
+    <h1>🌍 La Tierra - nuestro hogar en el universo</h1>
+  </header>
+
+  <div class="planet"></div>
+
+  <section>
+    <h2>Información General</h2>
+    <p>
+     <b>La tierra es unos de los planetas mas cercanos al sol, ademas tambien es el único planeta donde la vida existe y se puede desarrollar.</b>
+    <ul>
+      <li>💥 Tercer planeta del sistema solar.</li>
+      <li>💥 Se encuentra entre Venus y Marte.</li>
+      <li>💥 Único planeta conocido con vida.</li>
+      <li>💥 Compuesto en un 70% de agua y un 30% de continentes.</li>
+      <li>💥 Su atmósfera está formada principalmente por nitrógeno (78%) y oxígeno (21%), lo que permite la vida.</li>
+    </ul>
+    </p>
+  </section>
+
+  <section>
+    <h2>🌡️ Clima y superficie</h2>
+    <p>
+    <ul>
+      <li> Tiene una gran diversidad de climas: cálido, templado, frío, desértico y polar.</li>
+      <li> La superficie presenta montañas, océanos, ríos, desiertos, selvas y glaciares.</li>
+      <li> Alberga una enorme biodiversidad de plantas, animales y microorganismos.</li>
+    </ul>
+    </p>
+  </section>
+
+    <section>
+    <h2>🕒 Movimiento y rotación</h2>
+    <p>
+    <ul>
+      <li> Rotación: 24 horas → origina el día y la noche.</li>
+      <li> Traslación: 365 días y 6 horas → origina el año.</li>
+      <li> Tiene un satélite natural: la Luna, que influye en las mareas.</li>
+    </ul>
+    </p>
+  </section>
+
+    <section>
+    <h2>✨ Curiosidades</h2>
+    <p>
+    <ul>
+      <li> Su forma no es una esfera perfecta, sino un geoide.</li>
+      <li> Aproximadamente 8.000 millones de personas viven en ella.</li>
+      <li> Es conocida como el “planeta azul” por la gran cantidad de agua en su superficie.</li>
+    </ul>
+    </p>
+  </section>
+
+  <section>
+    <h2>Galería de Venus</h2>
+    <div class="images">
+      <img src="../tierraimg/1.jpg" alt="Marte 1">
+      <img src="../tierraimg/2.avif" alt="Marte 2">
+      <img src="../tierraimg/3.jfif" alt="Marte 3">
+    </div>
+  </section>
+
+  <a href="../index.html" class="btn-back">⬅ Volver a Aluxs Space</a>
+  <script>
+      /* ===== Fondo estrellado (canvas) ===== */
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+
+    function resize(){
+      canvas.width = innerWidth;
+      canvas.height = innerHeight;
+      // recrear estrellas al redimensionar
+      stars = Array.from({length: 220}, () => ({
+        x: Math.random()*canvas.width,
+        y: Math.random()*canvas.height,
+        r: Math.random()*1.8 + 0.2,
+        s: Math.random()*0.6 + 0.2   // velocidad
+      }));
+    }
+    addEventListener('resize', resize);
+    resize();
+
+    function draw(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      ctx.fillStyle = '#fff';
+      for(const st of stars){
+        ctx.beginPath();
+        ctx.arc(st.x, st.y, st.r, 0, Math.PI*2);
+        ctx.fill();
+        // movimiento vertical suave (parallax simple)
+        st.y += st.s;
+        if(st.y > canvas.height){ st.y = -2; st.x = Math.random()*canvas.width; }
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
+</body>
+</html>

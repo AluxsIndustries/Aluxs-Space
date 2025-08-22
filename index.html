@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aluxs Space</title>
+  <style>
+    /* ========== BASE ========== */
+    body{
+      margin:0; background:#000; color:#fff; font-family: Arial, sans-serif; overflow-x:hidden;
+    }
+    /* Fondo estrellas (canvas fijo) */
+    canvas#stars{
+      position:fixed; inset:0; width:100%; height:100%; z-index:-1;
+    }
+
+    /* ========== HEADER ========== */
+    header{ text-align:center; padding:100px 20px 30px; }
+    header h1{
+      font-size:4rem; font-weight:800; color:#fff;
+      text-shadow:0 0 20px #0ff, 0 0 40px #0ff;
+      animation:glow 2s ease-in-out infinite alternate;
+    }
+    @keyframes glow{
+      from{ text-shadow:0 0 20px #0ff, 0 0 40px #0ff; }
+      to  { text-shadow:0 0 40px #00aaff, 0 0 80px #0ff; }
+    }
+
+    /* ========== FRASES (ARRIBA) ========== */
+    .frases{ text-align:center; margin:10px 20px 30px; }
+    .frases button{
+      background:#00eaff; color:#000; font-weight:700;
+      border:0; padding:10px 18px; border-radius:10px; cursor:pointer;
+      transition:transform .2s ease;
+    }
+    .frases button:hover{ transform:scale(1.06); }
+    #frase{ margin-top:14px; font-size:1.2rem; font-style:italic; }
+
+    /* ========== SECCIONES ========== */
+    section{ padding:40px 20px; }
+    section h2{ text-align:center; font-size:2rem; margin-bottom:20px; color:#ffcc00; }
+
+    /* ========== GRID TARJETAS ========== */
+    .grid{
+      display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+      gap:20px; max-width:1100px; margin:0 auto;
+    }
+    .card{
+      background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);
+      border-radius:14px; padding:18px; text-align:center;
+      transition:transform .25s ease, box-shadow .25s ease;
+    }
+    .card:hover{ transform:translateY(-6px); box-shadow:0 0 24px rgba(0,255,255,.5); }
+    .card img{
+      width:100%; height:150px; object-fit:contain; border-radius:10px; background:#000;
+      margin-bottom:12px;
+    }
+    .card h3{ margin:6px 0 6px; font-size:1.2rem; color:#fff; }
+    .card p{ margin:0 0 12px; color:#ddd; font-size:.95rem; }
+    .card button{
+      background:#00eaff; color:#000; font-weight:700; border:0;
+      padding:8px 14px; border-radius:8px; cursor:pointer;
+    }
+
+    /* Botón "Ver más" de secciones (solo Exoplanetas y Galaxias) */
+    .ver-mas{ display:flex; justify-content:center; margin-top:18px; }
+    .ver-mas button{
+      background:#ffcc00; color:#000; font-weight:700; border:0;
+      padding:10px 18px; border-radius:10px; cursor:pointer; transition:transform .2s ease;
+    }
+    .ver-mas button:hover{ transform:scale(1.06); }
+  </style>
+</head>
+<body>
+  <audio id="musica" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<button onclick="document.getElementById('musica').play()">🎵 Reproducir música</button>
+<button onclick="document.getElementById('musica').pause()">⏸️ Pausar música</button>
+
+  <!-- FONDO ESTRELLADO -->
+  <canvas id="stars"></canvas>
+
+  <!-- HEADER -->
+  <header>
+    <h1>🚀 Aluxs Space 🌌</h1>
+  </header>
+
+  <!-- FRASES (ARRIBA) -->
+  <div class="frases">
+    <button onclick="mostrarFrase()">Mostrar frase épica</button>
+    <p id="frase"></p>
+  </div>
+
+  <!-- PLANETAS DEL SISTEMA SOLAR (SIN "VER MÁS PLANETAS") -->
+  <section>
+    <h2>🪐 Planetas del Sistema Solar</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Mercury_in_true_color.jpg" alt="Mercurio">
+        <h3>Mercurio</h3>
+        <p>El planeta más cercano al Sol.</p>
+        <button onclick="location.href='planetas/mercurio.html'">Ver más</button>
+      </div>
+
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Venus-real_color.jpg" alt="Venus">
+        <h3>Venus</h3>
+        <p>El planeta más caliente.</p>
+        <button onclick="location.href='planetas/venus.html'">Ver más</button>
+      </div>
+
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" alt="Tierra">
+        <h3>Tierra</h3>
+        <p>Nuestro hogar azul.</p>
+        <button onclick="location.href='planetas/tierra.html'">Ver más</button>
+      </div>
+
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg" alt="Marte">
+        <h3>Marte</h3>
+        <p>El planeta rojo.</p>
+        <button onclick="location.href='planetas/marte.html'">Ver más</button>
+      </div>
+
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg" alt="Júpiter">
+        <h3>Júpiter</h3>
+        <p>El gigante gaseoso.</p>
+        <button onclick="location.href='planetas/jupiter.html'">Ver más</button>
+      </div>
+
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_during_Equinox.jpg" alt="Saturno">
+        <h3>Saturno</h3>
+        <p>Con sus impresionantes anillos.</p>
+        <button onclick="location.href='planetas/saturno.html'">Ver más</button>
+      </div>
+
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Uranus2.jpg" alt="Urano">
+        <h3>Urano</h3>
+        <p>Un mundo inclinado y helado.</p>
+        <button onclick="location.href='planetas/urano.html'">Ver más</button>
+      </div>
+
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Neptune_Full.jpg" alt="Neptuno">
+        <h3>Neptuno</h3>
+        <p>El planeta más lejano.</p>
+        <button onclick="location.href='planetas/neptuno.html'">Ver más</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXOPLANETAS (CON "VER MÁS EXOPLANETAS") -->
+  <section>
+    <h2>🛰️ Exoplanetas</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://preview.redd.it/kepler-22b-is-an-exoplanet-that-might-be-covered-in-a-v0-o3wiamibb1ub1.png?width=1080&crop=smart&auto=webp&s=bbfeba67c000235695e10d81a75707b8fd708c5b" alt="Exoplanetas comparativa">
+        <h3>Kepler-22b</h3>
+        <p>En zona habitable de su estrella.</p>
+        <button onclick="location.href='exoplanetas/kepler-22b.html'">Ver más</button>
+      </div>
+
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Proxima_Centauri_b.jpg/640px-Proxima_Centauri_b.jpg" alt="Proxima b">
+        <h3>Proxima b</h3>
+        <p>El exoplaneta más cercano a la Tierra.</p>
+        <button onclick="location.href='exoplanetas/proxima-b.html'">Ver más</button>
+      </div>
+
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Kepler-452b_art.jpg/640px-Kepler-452b_art.jpg" alt="Kepler-452b">
+        <h3>Kepler-452b</h3>
+        <p>Conocido como el “primo” de la Tierra.</p>
+        <button onclick="location.href='exoplanetas/kepler-452b.html'">Ver más</button>
+      </div>
+    </div>
+    <div class="ver-mas">
+      <button onclick="location.href='exoplanetas/index.html'">Ver más exoplanetas</button>
+    </div>
+  </section>
+
+  <!-- GALAXIAS (CON "VER MÁS GALAXIAS") -->
+  <section>
+    <h2>🌌 Galaxias</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/1-milky-way-map-16.jpg/640px-1-milky-way-map-16.jpg" alt="Vía Láctea">
+        <h3>Vía Láctea</h3>
+        <p>Nuestro vecindario cósmico.</p>
+        <button onclick="location.href='galaxias/via-lactea.html'">Ver más</button>
+      </div>
+
+      <div class="card">
+        <img src="https://i.pinimg.com/1200x/9f/d4/4a/9fd44ab946b51ac102834b322a171ae8.jpg" alt="Andrómeda">
+        <h3>Andrómeda</h3>
+        <p>La gran vecina de la Vía Láctea.</p>
+        <button onclick="location.href='galaxias/andromeda.html'">Ver más</button>
+      </div>
+    </div>
+    <div class="ver-mas">
+      <button onclick="location.href='galaxias/index.html'">Ver más galaxias</button>
+    </div>
+  </section>
+
+  <script>
+    /* ===== Frases aleatorias (arriba) ===== */
+    const frases = [
+      "Somos polvo de estrellas tratando de entender el universo.",
+      "En algún lugar, algo increíble espera ser descubierto.",
+      "El universo no solo es más extraño de lo que imaginamos: es más extraño de lo que podemos imaginar.",
+      "Mira las estrellas y no a tus pies."
+    ];
+    function mostrarFrase(){
+      const i = Math.floor(Math.random() * frases.length);
+      document.getElementById('frase').textContent = frases[i];
+    }
+
+    /* ===== Fondo estrellado (canvas) ===== */
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+
+    function resize(){
+      canvas.width = innerWidth;
+      canvas.height = innerHeight;
+      // recrear estrellas al redimensionar
+      stars = Array.from({length: 220}, () => ({
+        x: Math.random()*canvas.width,
+        y: Math.random()*canvas.height,
+        r: Math.random()*1.8 + 0.2,
+        s: Math.random()*0.6 + 0.2   // velocidad
+      }));
+    }
+    addEventListener('resize', resize);
+    resize();
+
+    function draw(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      ctx.fillStyle = '#fff';
+      for(const st of stars){
+        ctx.beginPath();
+        ctx.arc(st.x, st.y, st.r, 0, Math.PI*2);
+        ctx.fill();
+        // movimiento vertical suave (parallax simple)
+        st.y += st.s;
+        if(st.y > canvas.height){ st.y = -2; st.x = Math.random()*canvas.width; }
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
+</body>
+</html>

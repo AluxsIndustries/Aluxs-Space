@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urano - Aluxs Space</title>
+  <style>
+        /* ========== BASE ========== */
+    body{
+      margin:0; background:#000; color:#fff; font-family: Arial, sans-serif; overflow-x:hidden;
+    }
+    /* Fondo estrellas (canvas fijo) */
+    canvas#stars{
+      position:fixed; inset:0; width:100%; height:100%; z-index:-1;
+    }
+        /* ========== HEADER ========== */
+    header{ text-align:center; padding:100px 20px 30px; }
+    header h1{
+      font-size:4rem; font-weight:800; color:#fff;
+      text-shadow:0 0 20px rgb(255, 254, 254), 0 0 40px rgb(247, 70, 47);
+      animation:glow 2s ease-in-out infinite alternate;
+    }
+    @keyframes glow{
+      from{ text-shadow:0 0 20px rgb(206, 203, 202), 0 0 40px rgb(255, 255, 255); }
+      to  { text-shadow:0 0 40px #0099ff, 0 0 80px rgb(0, 140, 255); }
+    }
+
+    /* Planeta Marte */
+    .planet {
+      width: 250px;
+      height: 250px;
+      margin: 40px auto;
+      border-radius: 50%;
+      background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Uranus_Voyager2_color_calibrated.png/640px-Uranus_Voyager2_color_calibrated.png") no-repeat;
+      background-size: cover;
+      animation: rotate 20s linear infinite;
+      box-shadow: 0 0 40px rgb(0, 137, 228);
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    section {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    section h2 {
+      color: #ff8080;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    section p {
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    .images {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .images img {
+      width: 280px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+      transition: transform 0.3s;
+    }
+
+    .images img:hover {
+      transform: scale(1.05);
+    }
+
+    .btn-back {
+      display: block;
+      margin: 40px auto;
+      padding: 12px 25px;
+      background: #ff4d4d;
+      color: white;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 0 15px #ff4d4d;
+      transition: 0.3s;
+    }
+
+    .btn-back:hover {
+      background: #ff1a1a;
+      box-shadow: 0 0 25px #ff1a1a;
+    }
+  </style>
+</head>
+<body>
+    <!-- FONDO ESTRELLADO -->
+  <canvas id="stars"></canvas>
+
+  <header>
+    <h1>🔵 Urano - El gigante inclinado</h1>
+  </header>
+
+  <div class="planet"></div>
+
+  <section>
+    <h2>Información General</h2>
+    <p>
+        <b>El planeta Urano es un planeta bastante lejano junto con Neptuno, es un planeta con un aspecto muy especial al resto de planetas</b>
+    <ul>
+      <li>💥 Séptimo planeta del Sistema Solar.</li>
+      <li>💥 Conocido por su inclinación extrema: gira prácticamente acostado (97°).</li>
+      <li>💥 Tiene un tono azul verdoso por el metano en su atmósfera.</li>
+    </ul>
+    </p>
+  </section>
+
+    <section>
+    <h2>Características principales</h2>
+    <p>        
+    <ul>
+      <li> Diámetro: 50,724 km.</li>
+      <li> Distancia del Sol: 2,871 millones de km.</li>
+      <li> Duración del día: 17.2 horas.</li>
+      <li> Duración del año: 84 años terrestres.</li>
+      <li> Tiene 27 lunas conocidas.</li>
+      <li> Las más importantes: Titania, Oberón, Umbriel, Ariel y Miranda.</li>
+    </ul>
+    </p>
+  </section>
+
+  <section>
+    <h2>🌡️ Clima</h2>
+    <p>
+        <ul>
+      <li> Temperatura media de -224 °C (uno de los más fríos del Sistema Solar).</li>
+      <li> Vientos de más de 900 km/h.</li>
+      <li> Oscuridad total en un hemisferio por más de 40 años seguidos debido a su inclinación.</li>
+    </ul>
+    </p>
+  </section>
+
+  <section>
+    <h2>Galería de Urano</h2>
+    <div class="images">
+      <img src="../uranoimg/1.webp" alt="Marte 1">
+      <img src="../uranoimg/2.jpeg" alt="Marte 2">
+      <img src="../uranoimg/3.webp" alt="Marte 3">
+    </div>
+  </section>
+
+  <a href="../index.html" class="btn-back">⬅ Volver a Aluxs Space</a>
+  <script>
+      /* ===== Fondo estrellado (canvas) ===== */
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+
+    function resize(){
+      canvas.width = innerWidth;
+      canvas.height = innerHeight;
+      // recrear estrellas al redimensionar
+      stars = Array.from({length: 220}, () => ({
+        x: Math.random()*canvas.width,
+        y: Math.random()*canvas.height,
+        r: Math.random()*1.8 + 0.2,
+        s: Math.random()*0.6 + 0.2   // velocidad
+      }));
+    }
+    addEventListener('resize', resize);
+    resize();
+
+    function draw(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      ctx.fillStyle = '#fff';
+      for(const st of stars){
+        ctx.beginPath();
+        ctx.arc(st.x, st.y, st.r, 0, Math.PI*2);
+        ctx.fill();
+        // movimiento vertical suave (parallax simple)
+        st.y += st.s;
+        if(st.y > canvas.height){ st.y = -2; st.x = Math.random()*canvas.width; }
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
+</body>
+</html>
